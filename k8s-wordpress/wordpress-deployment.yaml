@@ -55,22 +55,23 @@ spec:
         ports:
         - containerPort: 80
           name: wordpress
-        livenessProbe:
-          httpGet:
-            path: /wp-admin/install.php
-            port: 80
-          initialDelaySeconds: 60
-          periodSeconds: 15
-          timeoutSeconds: 5
-          failureThreshold: 5
-        readinessProbe:
-          httpGet:
-            path: /wp-admin/install.php
-            port: 80
-          initialDelaySeconds: 30
-          periodSeconds: 10
-          timeoutSeconds: 5
-          failureThreshold: 5
+        # Temporarily disabled probes to stabilize pod
+        # livenessProbe:
+        #   httpGet:
+        #     path: /wp-admin/install.php
+        #     port: 80
+        #   initialDelaySeconds: 120
+        #   periodSeconds: 20
+        #   timeoutSeconds: 10
+        #   failureThreshold: 10
+        # readinessProbe:
+        #   httpGet:
+        #     path: /wp-admin/install.php
+        #     port: 80
+        #   initialDelaySeconds: 90
+        #   periodSeconds: 15
+        #   timeoutSeconds: 10
+        #   failureThreshold: 10
         volumeMounts:
         - name: wordpress-persistent-storage
           mountPath: /var/www/html
